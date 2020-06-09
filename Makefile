@@ -27,7 +27,7 @@ dwm: ${OBJ}
 
 clean:
 	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
-	git submodule update --init dwmblocks && cd dwmblocks && make clean
+	git submodule update --init --remote dwmblocks && cd dwmblocks && make clean
 
 dist: clean
 	mkdir -p dwm-${VERSION}
@@ -46,10 +46,10 @@ install: all
 	sudo chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	sudo mkdir -p "${DESTDIR}/usr/share/xsessions"
 	sudo cp -f dwm.desktop "${DESTDIR}/usr/share/xsessions/dwm.desktop"
-	git submodule update --init dwmblocks && cd dwmblocks && make install
+	git submodule update --init --remote dwmblocks && cd dwmblocks && make install
 
 uninstall:
 	sudo rm -f ${DESTDIR}${PREFIX}/bin/dwm ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	git submodule update --init dwmblocks && cd dwmblocks && make uninstall
+	git submodule update --init --remote dwmblocks && cd dwmblocks && make uninstall
 
 .PHONY: all options clean dist install uninstall

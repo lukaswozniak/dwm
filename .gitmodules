@@ -1,3 +1,4 @@
 [submodule "dwmblocks"]
 	path = dwmblocks
 	url = https://github.com/lukaswozniak/dwmblocks
+    branch = master
