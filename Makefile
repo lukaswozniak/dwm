@@ -38,19 +38,18 @@ dist: clean
 	rm -rf dwm-${VERSION}
 
 install: all
-	mkdir -p ${DESTDIR}${PREFIX}/bin
-	cp -f dwm ${DESTDIR}${PREFIX}/bin
-	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
-	mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	mkdir -p "${DESTDIR}/usr/share/xsessions"
-	cp -f dwm.desktop "${DESTDIR}/usr/share/xsessions/dwm.desktop"
+	sudo mkdir -p ${DESTDIR}${PREFIX}/bin
+	sudo cp -f dwm ${DESTDIR}${PREFIX}/bin
+	sudo chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
+	sudo mkdir -p ${DESTDIR}${MANPREFIX}/man1
+	sudo bash -c 'sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1'
+	sudo chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	sudo mkdir -p "${DESTDIR}/usr/share/xsessions"
+	sudo cp -f dwm.desktop "${DESTDIR}/usr/share/xsessions/dwm.desktop"
 	git submodule update --init dwmblocks && cd dwmblocks && make install
 
 uninstall:
-	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
-		${DESTDIR}${MANPREFIX}/man1/dwm.1
+	sudo rm -f ${DESTDIR}${PREFIX}/bin/dwm ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	git submodule update --init dwmblocks && cd dwmblocks && make uninstall
 
 .PHONY: all options clean dist install uninstall
